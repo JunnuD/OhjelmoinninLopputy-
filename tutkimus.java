@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Ohjelma {
+public class tutkimus {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
@@ -36,6 +36,8 @@ public class Ohjelma {
                 jatka = false;
             }
         }
+
+        // Tähän pitää korjata että VAIN syötteellä 'ei' se keskeyttää eikä mikä tahansa random pelitä
 
         // Pelaa muistipeliä
         int pisteet = 0;
