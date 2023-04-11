@@ -8,6 +8,7 @@ public class tutkimus2 {
         ArrayList<String> tyypit = new ArrayList<String>();
 
         // Luo uusi tekstitiedosto
+        System.out.println("~Tervetuloa pelaaman Pokemon peliä~");
         System.out.println("Nyt on aika tehdä sinusta Pokemon mestari ! ");
         System.out.println("Anna Pokemon tiedostollesi nimi: ");
         String tiedostoNimi = input.nextLine();
@@ -37,7 +38,7 @@ public class tutkimus2 {
                 tiedosto.write(nimi + " " + tyyppi + "\n");
                 tiedosto.close();
             } catch (IOException e) {
-                System.out.println("Tietojen tallentaminen tiedostoon epäonnistui.");
+                System.out.println("Hupsista, Pokemonit pääsivät karkuun.");
             }
 
             System.out.println("Haluatko pyydystää vielä Pokemoneja ? (kyllä/ei) ");
@@ -50,42 +51,47 @@ public class tutkimus2 {
             }
             if (vastaus.equals("ei")) {
                 jatka = false;
-            }
+            }     
+        }
+        
+        System.out.println("Nyt on aika testata sinun Pokemon tuntemustasi !");
+        
+        pelaaMuistipeli(tiedostoNimi, input);
+        
         }
 
         // Pelaa muistipeliä
-        int pisteet = 0;
-        try {
-            File tiedosto = new File(tiedostoNimi+".txt");
-            Scanner lukija = new Scanner(tiedosto);
+        public static void pelaaMuistipeli(String tiedostoNimi, Scanner input) {
+            int pisteet = 0;
+            try {
+                File tiedosto = new File(tiedostoNimi+".txt");
+                Scanner lukija = new Scanner(tiedosto);
 
-            while (lukija.hasNextLine()) {
-                String rivi = lukija.nextLine();
-                String[] tiedot = rivi.split(" ");
-                String pokemoni = tiedot[0];
-                String tyyppi = tiedot[1];
+                while (lukija.hasNextLine()) {
+                    String rivi = lukija.nextLine();
+                    String[] tiedot = rivi.split(" ");
+                    String pokemoni = tiedot[0];
+                    String tyyppi = tiedot[1];
 
-                System.out.print("Mikä on " + pokemoni + " tyyppi? ");
-                String vastaus = input.nextLine();
-                if (vastaus.equalsIgnoreCase(tyyppi)) {
-                    System.out.println("Hyvä, olet saavuttamassa Pokemon mestarin titteliä !");
-                    pisteet++;
-                } else {
-                    System.out.println("Nyt meni mönkään eli takaisin Pokemon kouluun.");
-                    System.out.println("Oikea vastaus oli " + tyyppi + ".");
+                    System.out.print("Mikä on " + pokemoni + " tyyppi? ");
+                    String vastaus = input.nextLine();
+                    if (vastaus.equalsIgnoreCase(tyyppi)) {
+                        System.out.println("Hienoa työtä, matkasi näyttää hyvältä Pokemon mestariksi !");
+                        pisteet++;
+                    } else {
+                        System.out.println("Nyt meni mönkään eli takaisin Pokemon kouluun.");
+                        System.out.println("Oikea vastaus oli " + tyyppi + ".");
+                    }
                 }
+
+                lukija.close();
+
+            } catch (FileNotFoundException e) {
+                System.out.println("Pokemon tiedoston lukeminen epäonnistui.");
+                return;
             }
-            
-            lukija.close();
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("Pokemon tiedoston lukeminen epäonnistui.");
-            return;
+
+            System.out.println("Sinussa on selvästi ainesta Pokemon mestariksi =)");
+            System.out.println("Sait pyydystettyä " + pisteet + " Pokemonia!");
         }
-
-        // Tulosta pisteet ja kiitos
-        System.out.println("Sinussa on selvästi ainesta Pokemon mestariksi !");
-        System.out.println("Sait " + pisteet + " Pokemonia!");
     }
-} 
-
