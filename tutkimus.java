@@ -2,36 +2,42 @@ import java.io.*;
 import java.util.*;
 
 public class tutkimus {
+
+    // PITÄÄ SAADA METODEIKSI ERI JUTUT!
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner lukija = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
 
         // Luo uusi tiedosto
-        System.out.println("Nyt on aika tehdä sinusta Pokemon mestari! ");
-        System.out.println("Anna Pokemon tiedostollesi nimi: ");
-        String tiedostoNimi = input.nextLine();
+        System.out.println("Nyt on aika tehdä sinusta Pokémon mestari! ");
+        System.out.println("Anna Pokémon tiedostollesi nimi: ");
+        String tiedostoNimi = lukija.nextLine();
+        System.out.println();
         try {
-            File tiedosto = new File(tiedostoNimi);
+            File tiedosto = new File(tiedostoNimi + ".txt");
             tiedosto.createNewFile();
+            System.out.println("Tiedosto " + tiedostoNimi + ".txt luotu onnistuneest!" );
+
         } catch (IOException e) {
-            System.out.println("Pokemonien pyydystys ei onnistunut :(");
+            System.out.println("Pokémonien pyydystys ei onnistunut :(");
             return;
         }
 
         // Syötä Pokemonin nimi ja tyyppi tiedostoon
         boolean jatka = true;
         while (jatka) {
-            System.out.println("Anna haluamasi Pokemonin nimi: ");
-            String nimi = input.nextLine();
+            System.out.println("Anna haluamasi Pokémonin nimi: ");
+            String nimi = lukija.nextLine();
             pokemonit.add(nimi);
 
-            System.out.println("Kerro vielä äskeisen antamasi Pokemonin tyyppi: ");
-            String tyyppi = input.nextLine();
+            System.out.println("Kerro vielä äskeisen antamasi Pokémonin tyyppi: ");
+            String tyyppi = lukija.nextLine();
             tyypit.add(tyyppi);
 
-            System.out.println("Haluatko pyydystää vielä Pokemoneja? (kyllä/ei) ");
-            String vastaus = input.nextLine();
+            System.out.println("Haluatko pyydystää vielä Pokémoneja? (kyllä/ei) ");
+            String vastaus = lukija.nextLine();
             if (!vastaus.equalsIgnoreCase("kyllä")) {
                 jatka = false;
             }
@@ -46,17 +52,17 @@ public class tutkimus {
             String tyyppi = tyypit.get(i);
 
             System.out.print("Mikä on " + pokemoni + " tyyppi? ");
-            String vastaus = input.nextLine();
+            String vastaus = lukija.nextLine();
             if (vastaus.equalsIgnoreCase(tyyppi)) {
-                System.out.println("Hyvä, olet saavuttamassa Pokemon mestarin titteliä!");
+                System.out.println("Hyvä, olet saavuttamassa Pokémon mestarin titteliä!");
                 pisteet++;
             } else {
-                System.out.println("Nyt meni mönkään ja takaisin Pokemon kouluun, oikea vastaus oli " + tyyppi + ".");
+                System.out.println("Nyt meni mönkään ja takaisin Pokémon kouluun, oikea vastaus oli " + tyyppi + ".");
             }
         }
 
         // Tulosta pisteet ja kiitos
-        System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokemon mestariksi!");
+        System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokémon mestariksi!");
         System.out.println("Sait " + pisteet + " pistettä!");
         System.out.println("Kiitos pelaamisesta!");
     }
