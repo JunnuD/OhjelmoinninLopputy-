@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
     
     public class Tietovisapeli {
-    
+    //katothan itha
         public static void main(String[] args) throws FileNotFoundException {
             Scanner lukija = new Scanner(System.in);
             System.out.println("Nimeä tiedostosi: (.txt pääte tulee automaattisesti.) ");
