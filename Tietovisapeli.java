@@ -4,10 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
+/**
+ * @author1 Junnu Danhammer
+ * @author2 Alister Gul
+ * 
+ * 
+ */
     
     public class Tietovisapeli {
     //katothan itha
-        public static void (String[] args) throws FileNotFoundException {
+        public static void tiedostonluonti(String[] args) throws FileNotFoundException {
             Scanner lukija = new Scanner(System.in);
             System.out.println("Nimeä tiedostosi: (.txt pääte tulee automaattisesti.) ");
             File tiedostoNimi = new File(lukija.nextLine() + ".txt");
@@ -45,6 +52,8 @@ import java.io.IOException;
          * 
          * 
          */
+
+
         public static void main(String[] args) {
         String[] maat = new String[5];
         String[] pääkaupungit = new String[5];
@@ -68,7 +77,12 @@ import java.io.IOException;
             return;
 
         }
-
+        
+    
+        System.out.println("Tervetuloa peliin!!! ");
+    
+    
+    
         int oikein = 0;
         for (int i = 0; i < 5; i++) {
             System.out.println("Mikä on " + maat[i] + "n" + " pääkaupunki?");
