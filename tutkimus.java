@@ -2,48 +2,47 @@ import java.io.*;
 import java.util.*;
 
 public class tutkimus {
-
-    // PITÄÄ SAADA METODEIKSI ERI JUTUT!
-
     public static void main(String[] args) {
-        Scanner lukija = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
 
         // Luo uusi tiedosto
-        System.out.println("Nyt on aika tehdä sinusta Pokémon mestari! ");
-        System.out.println("Anna Pokémon tiedostollesi nimi: ");
-        String tiedostoNimi = lukija.nextLine();
-        System.out.println();
+        System.out.println("Nyt on aika tehdä sinusta Pokemon mestari! ");
+        System.out.println("Anna Pokemon tiedostollesi nimi: ");
+        String tiedostoNimi = input.nextLine();
+        tiedostoNimi += ".txt";
         try {
-            File tiedosto = new File(tiedostoNimi + ".txt");
+            File tiedosto = new File(tiedostoNimi);
             tiedosto.createNewFile();
-            System.out.println("Tiedosto " + tiedostoNimi + ".txt luotu onnistuneest!" );
-
         } catch (IOException e) {
-            System.out.println("Pokémonien pyydystys ei onnistunut :(");
+            System.out.println("Pokemonien pyydystys ei onnistunut :(");
             return;
         }
 
         // Syötä Pokemonin nimi ja tyyppi tiedostoon
         boolean jatka = true;
         while (jatka) {
-            System.out.println("Anna haluamasi Pokémonin nimi: ");
-            String nimi = lukija.nextLine();
+            System.out.println("Anna haluamasi Pokemonin nimi: ");
+            String nimi = input.nextLine();
             pokemonit.add(nimi);
 
-            System.out.println("Kerro vielä äskeisen antamasi Pokémonin tyyppi: ");
-            String tyyppi = lukija.nextLine();
+            System.out.println("Kerro vielä äskeisen antamasi Pokemonin tyyppi: ");
+            String tyyppi = input.nextLine();
             tyypit.add(tyyppi);
 
-            System.out.println("Haluatko pyydystää vielä Pokémoneja? (kyllä/ei) ");
-            String vastaus = lukija.nextLine();
-            if (!vastaus.equalsIgnoreCase("kyllä")) {
+            System.out.println("Haluatko pyydystää vielä Pokemoneja? (kyllä/ei) ");
+            String vastaus = input.nextLine().toLowerCase();
+            
+            while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {
+                System.out.println("Vastaathan kyllä tai ei.");
+                System.out.print("Haluatko lisätä vielä yhden Pokemonin? (kyllä/ei) ");
+                vastaus = input.nextLine().toLowerCase();
+            }
+            if (vastaus.equals("ei")) {
                 jatka = false;
             }
         }
-
-        // Tähän pitää korjata että VAIN syötteellä 'ei' se keskeyttää eikä mikä tahansa random pelitä
 
         // Pelaa muistipeliä
         int pisteet = 0;
@@ -52,17 +51,17 @@ public class tutkimus {
             String tyyppi = tyypit.get(i);
 
             System.out.print("Mikä on " + pokemoni + " tyyppi? ");
-            String vastaus = lukija.nextLine();
+            String vastaus = input.nextLine();
             if (vastaus.equalsIgnoreCase(tyyppi)) {
-                System.out.println("Hyvä, olet saavuttamassa Pokémon mestarin titteliä!");
+                System.out.println("Hyvä, olet saavuttamassa Pokemon mestarin titteliä!");
                 pisteet++;
             } else {
-                System.out.println("Nyt meni mönkään ja takaisin Pokémon kouluun, oikea vastaus oli " + tyyppi + ".");
+                System.out.println("Nyt meni mönkään ja takaisin Pokemon kouluun, oikea vastaus oli " + tyyppi + ".");
             }
         }
 
         // Tulosta pisteet ja kiitos
-        System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokémon mestariksi!");
+        System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokemon mestariksi!");
         System.out.println("Sait " + pisteet + " pistettä!");
         System.out.println("Kiitos pelaamisesta!");
     }

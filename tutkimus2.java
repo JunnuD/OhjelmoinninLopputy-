@@ -7,14 +7,14 @@ public class tutkimus2 {
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
 
-        // Luo uusi tiedosto
-        System.out.println("Nyt on aika tehdä sinusta Pokemon mestari! ");
+        // Luo uusi tekstitiedosto
+        System.out.println("Nyt on aika tehdä sinusta Pokemon mestari ! ");
         System.out.println("Anna Pokemon tiedostollesi nimi: ");
         String tiedostoNimi = input.nextLine();
-        tiedostoNimi += ".txt";
+        
         try {
-            File tiedosto = new File(tiedostoNimi);
-            tiedosto.createNewFile();
+            FileWriter tiedosto = new FileWriter(tiedostoNimi+".txt");
+            tiedosto.close();
         } catch (IOException e) {
             System.out.println("Pokemonien pyydystys ei onnistunut :(");
             return;
@@ -30,13 +30,22 @@ public class tutkimus2 {
             System.out.println("Kerro vielä äskeisen antamasi Pokemonin tyyppi: ");
             String tyyppi = input.nextLine();
             tyypit.add(tyyppi);
+            
+            // Tallenna vastaukset tiedostoon
+            try {
+                FileWriter tiedosto = new FileWriter(tiedostoNimi+".txt", true);
+                tiedosto.write(nimi + " " + tyyppi + "\n");
+                tiedosto.close();
+            } catch (IOException e) {
+                System.out.println("Tietojen tallentaminen tiedostoon epäonnistui.");
+            }
 
-            System.out.println("Haluatko pyydystää vielä Pokemoneja? (kyllä/ei) ");
+            System.out.println("Haluatko pyydystää vielä Pokemoneja ? (kyllä/ei) ");
             String vastaus = input.nextLine().toLowerCase();
             
             while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {
                 System.out.println("Vastaathan kyllä tai ei.");
-                System.out.print("Haluatko lisätä vielä yhden Pokemonin? (kyllä/ei) ");
+                System.out.print("Haluatko lisätä vielä yhden Pokemonin ? (kyllä/ei) ");
                 vastaus = input.nextLine().toLowerCase();
             }
             if (vastaus.equals("ei")) {
@@ -46,26 +55,36 @@ public class tutkimus2 {
 
         // Pelaa muistipeliä
         int pisteet = 0;
-        for (int i = 0; i < pokemonit.size(); i++) {
-            String pokemoni = pokemonit.get(i);
-            String tyyppi = tyypit.get(i);
+        try {
+            File tiedosto = new File(tiedostoNimi+".txt");
+            Scanner lukija = new Scanner(tiedosto);
 
-            System.out.print("Mikä on " + pokemoni + " tyyppi? ");
-            String vastaus = input.nextLine();
-            if (vastaus.equalsIgnoreCase(tyyppi)) {
-                System.out.println("Hyvä, olet saavuttamassa Pokemon mestarin titteliä!");
-                pisteet++;
-            } else {
-                System.out.println("Nyt meni mönkään ja takaisin Pokemon kouluun, oikea vastaus oli " + tyyppi + ".");
+            while (lukija.hasNextLine()) {
+                String rivi = lukija.nextLine();
+                String[] tiedot = rivi.split(" ");
+                String pokemoni = tiedot[0];
+                String tyyppi = tiedot[1];
+
+                System.out.print("Mikä on " + pokemoni + " tyyppi? ");
+                String vastaus = input.nextLine();
+                if (vastaus.equalsIgnoreCase(tyyppi)) {
+                    System.out.println("Hyvä, olet saavuttamassa Pokemon mestarin titteliä !");
+                    pisteet++;
+                } else {
+                    System.out.println("Nyt meni mönkään eli takaisin Pokemon kouluun.");
+                    System.out.println("Oikea vastaus oli " + tyyppi + ".");
+                }
             }
+            
+            lukija.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Pokemon tiedoston lukeminen epäonnistui.");
+            return;
         }
 
         // Tulosta pisteet ja kiitos
-        System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokemon mestariksi!");
-        System.out.println("Sait " + pisteet + " pistettä!");
-        System.out.println("Kiitos pelaamisesta!");
+        System.out.println("Sinussa on selvästi ainesta Pokemon mestariksi !");
+        System.out.println("Sait " + pisteet + " Pokemonia!");
     }
-}
- {
-    
-}
+    } 
