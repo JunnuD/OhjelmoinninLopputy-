@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class tutkimus2 {
+public class Ohjelma {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
@@ -18,6 +18,7 @@ public class tutkimus2 {
             tiedosto.close();
         } catch (IOException e) {
             System.out.println("Pokemonien pyydystys ei onnistunut :(");
+            input.close();
             return;
         }
 
@@ -93,5 +94,24 @@ public class tutkimus2 {
 
             System.out.println("Sinussa on selvästi ainesta Pokemon mestariksi =)");
             System.out.println("Sait pyydystettyä " + pisteet + " Pokemonia!");
+        
+        boolean uudestaan = true;
+        while (uudestaan) {
+            System.out.println("Haluatko pyydystää Pokemonit uudestaan? (kyllä/ei)");
+            String vastaus = input.nextLine().toLowerCase();
+            if (vastaus.equals("ei")) {
+                uudestaan = false;
+                System.out.println("~Pokemonit kiittävät pelaamisestasi~");
+            } else if (vastaus.equals("kyllä")) {
+                pelaaMuistipeli(tiedostoNimi, input);
+            } else {
+                System.out.println("Vastaathan kyllä tai ei.");
+            }
+           
         }
-    }
+        }
+}
+
+        
+    
+    
