@@ -64,8 +64,5 @@ public class tutkimus2 {
         System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokemon mestariksi!");
         System.out.println("Sait " + pisteet + " pistettä!");
         System.out.println("Kiitos pelaamisesta!");
-    }
-}
- {
-    
+    } 
 }
