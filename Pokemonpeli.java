@@ -113,10 +113,15 @@ public class Pokemonpeli {
             }
             if (vastaus.equals("kyllä")) {
             	luoTiedosto(input);
+                syotaPokemoninNimiJaTyyppi(input, new ArrayList<String>(), new ArrayList<String>(), tiedostoNimi);
+                pelaaMuistipeli(tiedostoNimi, input);
+                pelaaUudestaan(input, tiedostoNimi);
             } else {
-                 System.out.println("~Pokemonit kiittävät pelaamisestasi~");
+                System.out.println("~Pokemonit kiittävät pelaamisestasi~");
+                input.close();
             }
-        }      
+        }
+   
 }
 
 
