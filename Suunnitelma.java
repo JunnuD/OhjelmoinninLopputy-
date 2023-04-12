@@ -12,7 +12,7 @@ import java.io.IOException;
  * 
  */
     
-    public class Tietovisapeli {
+    public class Suunnitelma {
     //katothan itha
         public static void tiedostonluonti(String[] args) throws FileNotFoundException {
             Scanner lukija = new Scanner(System.in);

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Ohjelma {
+public class Pokemonpeli {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
