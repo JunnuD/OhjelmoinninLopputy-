@@ -17,6 +17,7 @@ public class tutkimus {
             tiedosto.createNewFile();
         } catch (IOException e) {
             System.out.println("Pokemonien pyydystys ei onnistunut :(");
+            input.close(); 
             return;
         }
 
@@ -64,5 +65,6 @@ public class tutkimus {
         System.out.println("Onnittelut pääsit pelin loppuun! Sinussa on selvästi ainesta Pokemon mestariksi!");
         System.out.println("Sait " + pisteet + " pistettä!");
         System.out.println("Kiitos pelaamisesta!");
-    }
+        input.close();
+    } 
 }
