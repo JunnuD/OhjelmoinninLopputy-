@@ -14,11 +14,17 @@ public class Pokemonpeli {
         pelaaMuistipeli(tiedostoNimi, input);
 
         pelaaUudestaan(input, tiedostoNimi);
-    }
+    }                       
+    public static final String RED_BOLD = "\033[1;31m"; // RED
+    public static final String GREEN_BOLD = "\033[1;32m";   // GREEN
+    public static final String BLUE_BOLD = "\033[1;34m";    // BLUE   JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
+    public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
+    public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
 
     public static String luoTiedosto(Scanner input) {
 	
-        System.out.println(" ~Tervetuloa pelaaman Pokemon peliä~ ");
+        System.out.println(" ");
+        System.out.println("\033[1;34m" + " ~~~  Tervetuloa pelaaman Pokemon peliä ~~~   " + "\033[1;37m");
         System.out.println(" ");
         System.out.println("Nyt on aika tehdä sinusta Pokemon mestari ! ");
     	       
@@ -131,7 +137,8 @@ public class Pokemonpeli {
             pelaaMuistipeli(uusiTiedostoNimi, input);
             pelaaUudestaan(input, uusiTiedostoNimi);
         } else {
-            System.out.println("~Pokemonit kiittävät pelaamisestasi~");
+            System.out.println("\033[1;34m" + "~Pokemonit kiittävät pelaamisestasi~");
+            System.out.println("");
             input.close();
         }
     }
