@@ -148,7 +148,6 @@ public class Pokemonpeli {
             input.close();
         }
     }
-   
 }
 
 
