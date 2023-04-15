@@ -60,13 +60,13 @@ public class Pokemonpeli {
         		+ "██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n"
         		+ "╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n\033[1;31m" 
                 + "╔═════════════════════════════════════════════════════════════╗\r\n"
-                + "║                           Made by                           ║\n"
-                + "║                         Alister Gul                         ║\n"
-                + "║                       Junnu Dannhammer                      ║\n"
+                + "║                           \033[1;30mMade by\033[1;31m                           ║\r\n"
+                + "║                         \033[1;30mAlister Gul\033[1;31m                         ║\r\n"
+                + "║                       \033[1;30mJunnu Dannhammer\033[1;31m                      ║\r\n"
                 + "╚═════════════════════════════════════════════════════════════╝");
 
         System.out.println(" ");
-        System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + " ~~~   " + "\033[1;37m");
+        System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
         System.out.println(" ");
         System.out.println("Nyt on aika tehdä sinusta" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "mestari ! ");
     	       
@@ -142,7 +142,7 @@ public class Pokemonpeli {
                     System.out.println(" ");
                     pisteet++;
                 } else {
-                    System.out.println("Nyt meni mönkään eli takaisin" + "\033[1;33m" + " Pokemon" + "\033[1;37m" + "kouluun.");
+                    System.out.println("Nyt meni mönkään eli takaisin" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "kouluun.");
                     System.out.println("Oikea vastaus oli " + tyyppi + ".");
 
                     System.out.println(" ");
@@ -156,13 +156,13 @@ public class Pokemonpeli {
         }
 
         System.out.println("Sinussa on selvästi ainesta " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " mestariksi =)");
-        System.out.println("Sait pyydystettyä " + pisteet + " " + "\033[1;33m" + "Pokemonia!" + "\033[1;37m" + "");
+        System.out.println("Sait pyydystettyä " + pisteet + " " + "\033[1;33m" + "Pokemonia" + "\033[1;37m" + "");
         System.out.println(" ");
         
     }
         
     public static void pelaaUudestaan(Scanner input, String tiedostoNimi) {
-        System.out.println("Haluatko pelata uudelleen? (kyllä/ei)");
+        System.out.println("Haluatko aloittaa " + "\033[1;33m" + "Pokemonien" + "\033[1;37m" + " metsästyksen uudelleen? (kyllä/ei)");
         String vastaus = input.nextLine().toLowerCase();
         System.out.println(" ");
 
@@ -179,7 +179,7 @@ public class Pokemonpeli {
             pelaaMuistipeli(uusiTiedostoNimi, input);
             pelaaUudestaan(input, uusiTiedostoNimi);
         } else {
-            System.out.println("\033[1;31m" + "~" + "\033[1;33m" + "Pokemonit" + "\033[1;31m" + " kiittävät pelaamisestasi~" + "\033[0m");
+            System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Kiitokset pelaamisesta " + "\033[1;33m" + "Pokemonit " + "\033[1;33m" + "\033[1;31m" + "sanoivat" +  "\033[1;33m" +"  ~~~" + "\033[0m");
             System.out.println("");
             System.out.println(""
         			+ "     ⬛⬛⬛⬛⬛⬛\r\n"
