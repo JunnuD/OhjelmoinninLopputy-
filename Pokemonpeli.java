@@ -1,5 +1,11 @@
 import java.io.*;
 import java.util.*;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Pokemonpeli {
 
@@ -13,9 +19,12 @@ public class Pokemonpeli {
 
 
     public static void main(String[] args) {
+    	
     	Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
+        
+        soitaTunnari("C:/Users/alist/eclipse-workspace/Harjotustyo/Theme.wav");
 
         String tiedostoNimi = luoTiedosto(input);
 
@@ -26,9 +35,37 @@ public class Pokemonpeli {
         pelaaUudestaan(input, tiedostoNimi);
     }                       
     
+        public static void soitaTunnari(String filePath) {
+        	try {
+                File file = new File(filePath);
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn);
+                clip.start();
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
 
     public static String luoTiedosto(Scanner input) {
 	
+    	System.out.println("\033[1;33m" 
+        		+ "██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗\r\n"
+        		+ "██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝████╗ ████║██╔═══██╗████╗  ██║\r\n"
+        		+ "██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║\r\n"
+        		+ "██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n"
+        		+ "██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n"
+        		+ "╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n\033[1;31m" 
+                + "╔═════════════════════════════════════════════════════════════╗\r\n"
+                + "║                           Made by                           ║\n"
+                + "║                         Alister Gul                         ║\n"
+                + "║                       Junnu Dannhammer                      ║\n"
+                + "╚═════════════════════════════════════════════════════════════╝");
+
         System.out.println(" ");
         System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + " ~~~   " + "\033[1;37m");
         System.out.println(" ");
