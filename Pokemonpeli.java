@@ -152,6 +152,7 @@ public class Pokemonpeli {
 
         } catch (FileNotFoundException e) {
             System.out.println("" + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " tiedoston lukeminen epäonnistui.");
+            System.out.println(" ");
             return;
         }
 
@@ -172,7 +173,7 @@ public class Pokemonpeli {
             vastaus = input.nextLine().toLowerCase();
         }
         if (vastaus.equals("kyllä")) {
-			System.out.println("Luodaan uusi " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + "  tiedosto uudelle pelille...");
+			System.out.println("Ladataan uutta " + "\033[1;33m" + "Pokemon " + "\033[1;37m" + "peliä...");
             System.out.println(" ");
             String uusiTiedostoNimi = luoTiedosto(input);
             syotaPokemoninNimiJaTyyppi(input, new ArrayList<String>(), new ArrayList<String>(), uusiTiedostoNimi);
