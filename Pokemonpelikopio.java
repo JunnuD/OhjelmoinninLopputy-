@@ -12,7 +12,6 @@ public class Pokemonpelikopio {
     * @author Alister Gul
     * @author Junnu Danhammer
     * @date 16.4.2023 
-    * @exception IOexception käytössä tiedostonkäsittelyä varten
     */
 
 
@@ -71,10 +70,10 @@ public class Pokemonpelikopio {
     }
 
     /**
-     * Tervetulo viesti ohjelmaan! 
+     * Tervetulo- viesti ohjelmaan! 
      * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
      * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
-     * 
+     * @exception IOexception käytössä tiedostonkäsittelyä varten
      */
 
     public static String luoTiedosto(Scanner input) {
