@@ -27,14 +27,17 @@ public class Pokemonpeli {
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
 
-
+    /**
+     * 
+     * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
+     */
     public static void main(String[] args) {
     	
     	Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
         
-        soitaTunnari("C:/Users/alist/eclipse-workspace/Harjotustyo/Theme.wav");
+        soitaTunnari("Theme.wav");
 
         String tiedostoNimi = luoTiedosto(input);
 
@@ -48,6 +51,7 @@ public class Pokemonpeli {
     /**
      * @param filePath = ohjataan ohjelmalle polku josta löytää soitettava tunnari.
      */
+
     public static void soitaTunnari(String filePath) {
         try {
             File file = new File(filePath);
