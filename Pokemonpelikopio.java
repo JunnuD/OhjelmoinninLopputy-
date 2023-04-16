@@ -20,6 +20,7 @@ public class Pokemonpelikopio {
     /**
     * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
     */
+
     public static final String RED_BOLD = "\033[1;31m";     // RED
     public static final String GREEN_BOLD = "\033[1;32m";   // GREEN
     public static final String BLUE_BOLD = "\033[1;34m";    // BLUE   JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
@@ -31,6 +32,7 @@ public class Pokemonpelikopio {
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
      */
+
     public static void main(String[] args) {
     	
     	Scanner input = new Scanner(System.in);
@@ -76,6 +78,9 @@ public class Pokemonpelikopio {
      */
 
     public static String luoTiedosto(Scanner input) {
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         System.out.println("");
     	System.out.println("\033[1;33m" 
         		+ "██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗\r\n"
