@@ -8,23 +8,36 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Pokemonpelikopio {
+    /**
+    * @author Alister Gul
+    * @author Junnu Danhammer
+    * @date 16.4.2023 
+    * @exception IOexception käytössä tiedostonkäsittelyä varten
+    */
 
 
-    public static final String RED_BOLD = "\033[1;31m"; // RED
+
+    /**
+    * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
+    */
+    public static final String RED_BOLD = "\033[1;31m";     // RED
     public static final String GREEN_BOLD = "\033[1;32m";   // GREEN
     public static final String BLUE_BOLD = "\033[1;34m";    // BLUE   JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
     public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
-    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
+    public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
 
-
+    /**
+     * 
+     * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
+     */
     public static void main(String[] args) {
     	
     	Scanner input = new Scanner(System.in);
         ArrayList<String> pokemonit = new ArrayList<String>();
         ArrayList<String> tyypit = new ArrayList<String>();
         
-        soitaTunnari("C:/Users/alist/eclipse-workspace/Harjotustyo/Theme.wav");
+        soitaTunnari("Theme.wav");
 
         String tiedostoNimi = luoTiedosto(input);
 
@@ -33,23 +46,34 @@ public class Pokemonpelikopio {
         pelaaMuistipeli(tiedostoNimi, input);
 
         pelaaUudestaan(input, tiedostoNimi);
-    }                       
-    
-        public static void soitaTunnari(String filePath) {
-        	try {
-                File file = new File(filePath);
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioIn);
-                clip.start();
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+    }  
+                         
+    /**
+     * @param filePath = ohjataan ohjelmalle polku josta löytää soitettava tunnari.
+     */
+
+    public static void soitaTunnari(String filePath) {
+        try {
+            File file = new File(filePath);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
+    }
+
+    /**
+     * Tervetulo viesti ohjelmaan! 
+     * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
+     * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
+     * 
+     */
 
     public static String luoTiedosto(Scanner input) {
         System.out.println("");
@@ -85,6 +109,13 @@ public class Pokemonpelikopio {
 	        }
 	        return tiedostoNimi;
 	    }
+
+        /**
+         * @param input samaa lukijaa hyödynnetään jälleen, jolla saadaan käyttäjän luomaan tiedostoon sisältö
+         * @param pokemonit = käyttäjän itse syöttämät pokemonit, jotka saa valita vapaasti
+         * @param tyypit = pokemonien tietyt tyypit (esim. vesi, tuli sähkö jne)
+         * @param tiedostoNimi = Sama jonka käyttäjä loi aiemmassa vaiheessa ohjelmaa.
+         */
 
     public static void syotaPokemoninNimiJaTyyppi(Scanner input, ArrayList<String> pokemonit, ArrayList<String> tyypit, String tiedostoNimi) {
     	boolean jatka = true;
@@ -122,7 +153,14 @@ public class Pokemonpelikopio {
         }
     }
 
-        // Pelaa muistipeliä
+    /**
+     * Tässä metodissa käydään itse muistipeli läpi. Ohjelma kyselee käyttäjän omista syötteistä
+     * ja vertaa täsmääkö tiedot
+     * Tässä myös on pisteydenlasku  ja tulostus siitä kun metodi on läpikäyty.
+     * @param tiedostoNimi 
+     * @param input
+     */
+
     public static void pelaaMuistipeli(String tiedostoNimi, Scanner input) {
         int pisteet = 0;
             try {
@@ -162,7 +200,16 @@ public class Pokemonpelikopio {
         System.out.println(" ");
         
     }
-        
+    
+    /**
+     * Uudelleen pelaamista varten oleva metodi, joka tulee kun muistipeli päättyy
+     * Käyttäjä saa halutessaan käydä kaiken uudestaan ilman että täytyy aloittaa ohjelma alusta
+     * Toiminnallisuus luotu suoraan ohjelman sisään.
+     * @param input
+     * @param tiedostoNimi
+     * Mikäli käyttähä ei tahdo pelata uudelleen tulee loppu kiitokset.
+     */
+
     public static void pelaaUudestaan(Scanner input, String tiedostoNimi) {
         System.out.println("Haluatko aloittaa " + "\033[1;33m" + "Pokemonien" + "\033[1;37m" + " metsästyksen uudelleen? (kyllä/ei)");
         String vastaus = input.nextLine().toLowerCase();
