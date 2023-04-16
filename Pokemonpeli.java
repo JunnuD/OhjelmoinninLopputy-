@@ -39,7 +39,7 @@ public class Pokemonpeli {
         ArrayList<String> pokemonit = new ArrayList<String>();  // luodaan omat listat
         ArrayList<String> tyypit = new ArrayList<String>();
         
-        soitaTunnari("Theme.wav");
+        soitaTunnari("Theme.wav"); // kutsutaan metodit
 
         String tiedostoNimi = luoTiedosto(input);
 
