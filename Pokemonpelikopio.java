@@ -61,6 +61,7 @@ public class Pokemonpelikopio {
             clip.open(audioIn);
             clip.start();
         } catch (UnsupportedAudioFileException e) {
+            System.out.println("Teema soittamisessa tapahtui ongelma. ");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
