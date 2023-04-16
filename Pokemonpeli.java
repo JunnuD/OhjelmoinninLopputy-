@@ -61,7 +61,7 @@ public class Pokemonpeli {
             clip.open(audioIn);
             clip.start();
         } catch (UnsupportedAudioFileException e) {
-            System.out.println("Teema soittamisessa tapahtui ongelma. ");
+            System.out.println("\033[1;33m" + "Pokemon " + "\033[1;37m" + "tunnarin soittaminen epäonnistui. ");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
