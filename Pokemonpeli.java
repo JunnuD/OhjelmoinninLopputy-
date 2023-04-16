@@ -9,9 +9,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Pokemonpeli {
     /**
-     * @author Alister Gul
-     * @author Junnu Danhammer
-     */
+    * @author Alister Gul
+    * @author Junnu Danhammer
+    * @date 16.4.2023 
+    * @exception IOexception käytössä tiedostonkäsittelyä varten
+    */
 
 
 
@@ -41,30 +43,33 @@ public class Pokemonpeli {
         pelaaMuistipeli(tiedostoNimi, input);
 
         pelaaUudestaan(input, tiedostoNimi);
-    }                       
-    
-        public static void soitaTunnari(String filePath) {
-        	try {
-                File file = new File(filePath);
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioIn);
-                clip.start();
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+    }  
+                         
+    /**
+     * @param filePath = ohjataan ohjelmalle polku josta löytää soitettava tunnari.
+     */
+    public static void soitaTunnari(String filePath) {
+        try {
+            File file = new File(filePath);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
+    }
 
-        /**
-         * Tervetulo viesti ohjelmaan! 
-         * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
-         * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
-         * 
-         */
+    /**
+     * Tervetulo viesti ohjelmaan! 
+     * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
+     * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
+     * 
+     */
 
     public static String luoTiedosto(Scanner input) {
         System.out.println("");
