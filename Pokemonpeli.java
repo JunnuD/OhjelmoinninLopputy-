@@ -26,7 +26,7 @@ public class Pokemonpeli {
     public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
-
+    private static Clip clip;
     /**
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
@@ -56,12 +56,15 @@ public class Pokemonpeli {
 
     public static void soitaTunnari(String filePath) {
         try {
-            File file = new File(filePath); // Luodaan uusi tiedosto johon talletaan tunnari 
+            if (clip != null) {
+                clip.stop();  // stop the currently playing audio
+            }
+            File file = new File(filePath);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioIn);
-            clip.start();   //Soitetaan tunnari
-            
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  // loop the audio continuously
+            clip.start();  // start playing the audio from the beginning
         } catch (UnsupportedAudioFileException e) { // Virheilmoitus jos tunnarin toisto ei onnistu.
             System.out.println("\033[1;33m" + "Pokemon " + "\033[1;37m" + "tunnarin soittaminen epäonnistui. ");
             e.printStackTrace();
