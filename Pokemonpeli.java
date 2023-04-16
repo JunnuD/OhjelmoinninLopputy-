@@ -12,7 +12,6 @@ public class Pokemonpeli {
     * @author Alister Gul
     * @author Junnu Danhammer
     * @date 16.4.2023 
-    * @exception IOexception käytössä tiedostonkäsittelyä varten
     */
 
 
@@ -20,6 +19,7 @@ public class Pokemonpeli {
     /**
     * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
     */
+
     public static final String RED_BOLD = "\033[1;31m";     // RED
     public static final String GREEN_BOLD = "\033[1;32m";   // GREEN
     public static final String BLUE_BOLD = "\033[1;34m";    // BLUE   JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
@@ -31,6 +31,7 @@ public class Pokemonpeli {
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
      */
+
     public static void main(String[] args) {
     	
     	Scanner input = new Scanner(System.in);
@@ -60,6 +61,7 @@ public class Pokemonpeli {
             clip.open(audioIn);
             clip.start();
         } catch (UnsupportedAudioFileException e) {
+            System.out.println("Teema soittamisessa tapahtui ongelma. ");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,13 +71,16 @@ public class Pokemonpeli {
     }
 
     /**
-     * Tervetulo viesti ohjelmaan! 
+     * Tervetulo- viesti ohjelmaan! 
      * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
      * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
-     * 
+     * @exception IOexception käytössä tiedostonkäsittelyä varten
      */
 
     public static String luoTiedosto(Scanner input) {
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         System.out.println("");
     	System.out.println("\033[1;33m" 
         		+ "██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗\r\n"
