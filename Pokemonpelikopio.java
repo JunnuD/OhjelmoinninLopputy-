@@ -58,14 +58,14 @@ public class Pokemonpelikopio extends JPanel  {
     public static void soitaTunnari(String filePath) {
         try {
             if (clip != null) {
-                clip.stop();  // stop the currently playing audio
+                clip.stop();  // Lopetaan jo soimassa oleva tunnari (Toiminta mikäli käyttäjä haluaa pelata pelin uudestaan --> tunnari alkaa alusta)
             }
             File file = new File(filePath);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
             clip.open(audioIn);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);  // loop the audio continuously
-            clip.start();  // start playing the audio from the beginning
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  // Loputon audio loop
+            clip.start();  // Aloitetaan soittamaan alusta 
         } catch (UnsupportedAudioFileException e) { // Virheilmoitus jos tunnarin toisto ei onnistu.
             System.out.println("\033[1;33m" + "Pokemon " + "\033[1;37m" + "tunnarin soittaminen epäonnistui. ");
             e.printStackTrace();
