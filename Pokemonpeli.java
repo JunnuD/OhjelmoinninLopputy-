@@ -271,6 +271,8 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
             		+ "     ⬛⬛⬛⬛⬛⬛");
             System.out.println("");
             
+            input.close(); // Suljetaan scanner lukija olio ja ollaan iloisia :)
+            
             // Luodaan JFrame objekti pelin päätteeksi. Pieni söpö kuva onnitteluiden oheen. :)
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
@@ -282,11 +284,11 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
             // Lisätään label ja layout keskelle näyttöä.
             frame.add(label, BorderLayout.CENTER);
 
-            // Asetetaan koko ja näkyvyys Jframelle
-            frame.setSize(4000, 4000);
+            // Asetetaan koko ja näkyvyys sekä päällimmäiseksi ikkunaksi Jframe
+            frame.setSize(1000, 2000);
             frame.setVisible(true);
+            frame.setAlwaysOnTop(true);
             
-            input.close(); // Suljetaan scanner lukija olio ja ollaan iloisia :)
         }
     }
 }
