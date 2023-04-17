@@ -26,8 +26,12 @@ public class Pokemonpeli extends JPanel  {
     public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
+<<<<<<< HEAD
 
     private static Clip clip;
+=======
+    private static Clip clip;  // UUUUUUUUUUSI
+>>>>>>> 72f1cac6642c4d0cb5072b45d3850223746163d2
     /**
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
@@ -56,16 +60,16 @@ public class Pokemonpeli extends JPanel  {
      */
 
     public static void soitaTunnari(String filePath) {
-        try {
-            if (clip != null) {
-                clip.stop();  // stop the currently playing audio
+        try {// UUUUUUUUUUSI
+            if (clip != null) {// UUUUUUUUUUSI
+                clip.stop();  // stop the currently playing audio// UUUUUUUUUUSI
             }
             File file = new File(filePath);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
             clip.open(audioIn);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);  // loop the audio continuously
-            clip.start();  // start playing the audio from the beginning
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  // loop the audio continuously// UUUUUUUUUUSI
+            clip.start();  // start playing the audio from the beginning// UUUUUUUUUUSI
         } catch (UnsupportedAudioFileException e) { // Virheilmoitus jos tunnarin toisto ei onnistu.
             System.out.println("\033[1;33m" + "Pokemon " + "\033[1;37m" + "tunnarin soittaminen epäonnistui. ");
             e.printStackTrace();
@@ -94,16 +98,16 @@ public class Pokemonpeli extends JPanel  {
         		"██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║\r\n" +
         		"██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n" +
         		"██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n" +
-        		"╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n";
-        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");
-        		System.out.print("\033[1;33m" + str);
+        		"╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n";// UUUUUUUUUUSI
+        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");// UUUUUUUUUUSI
+        		System.out.print("\033[1;33m" + str);// UUUUUUUUUUSI
         		
         System.out.println("\033[1;31m" 
         		        + "╔═════════════════════════════════════════════════════════════╗\r\n"
         		        + "║                           \033[1;30mMade by\033[1;31m                           ║\r\n"
         		        + "║                         \033[1;30mAlister Gul\033[1;31m                         ║\r\n"
         		        + "║                       \033[1;30mJunnu Dannhammer\033[1;31m                      ║\r\n"
-        		        + "╚═════════════════════════════════════════════════════════════╝");
+        		        + "╚═════════════════════════════════════════════════════════════╝");// UUUUUUUUUUSI
 
         System.out.println(" ");
         System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
@@ -265,6 +269,7 @@ public class Pokemonpeli extends JPanel  {
             		+ "     ⬛⬛⬛⬛⬛⬛");
             System.out.println("");
             
+<<<<<<< HEAD
             // Luodaan JFrame objekti pelin päätteeksi. Pieni söpö kuva onnitteluiden oheen. :)
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
@@ -277,6 +282,20 @@ public class Pokemonpeli extends JPanel  {
             frame.add(label, BorderLayout.CENTER);
 
             // Asetetaan koko ja näkyvyys Jframelle
+=======
+         // Create a JFrame object// UUUUUUUUUUSI
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+
+            // Create an ImageIcon and JLabel objects// UUUUUUUUUUSI
+            ImageIcon imageIcon = new ImageIcon("imageee.jpg");
+            JLabel label = new JLabel(imageIcon);
+
+            // Add the JLabel to the center of the JFrame// UUUUUUUUUUSI
+            frame.add(label, BorderLayout.CENTER);
+
+            // Set the size and visibility of the JFrame// UUUUUUUUUUSI
+>>>>>>> 72f1cac6642c4d0cb5072b45d3850223746163d2
             frame.setSize(4000, 4000);
             frame.setVisible(true);
             
