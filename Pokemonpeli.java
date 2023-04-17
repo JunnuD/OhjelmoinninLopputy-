@@ -13,7 +13,7 @@ public class Pokemonpeli extends JPanel  {
     /**
     * @author Alister Gul
     * @author Junnu Danhammer
-    * @date 16.4.2023 
+    * @date 17.4.2023 
     */
 
     /**
@@ -26,6 +26,7 @@ public class Pokemonpeli extends JPanel  {
     public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
+
     private static Clip clip;
     /**
      * 
@@ -264,18 +265,18 @@ public class Pokemonpeli extends JPanel  {
             		+ "     ⬛⬛⬛⬛⬛⬛");
             System.out.println("");
             
-         // Create a JFrame object
+            // Luodaan JFrame objekti pelin päätteeksi. Pieni söpö kuva onnitteluiden oheen. :)
             JFrame frame = new JFrame();
             frame.setLayout(new BorderLayout());
 
-            // Create an ImageIcon and JLabel objects
+            // Luo ImageIcon ja JLabel objekti
             ImageIcon imageIcon = new ImageIcon("imageee.jpg");
             JLabel label = new JLabel(imageIcon);
 
-            // Add the JLabel to the center of the JFrame
+            // Lisätään label ja layout keskelle näyttöä.
             frame.add(label, BorderLayout.CENTER);
 
-            // Set the size and visibility of the JFrame
+            // Asetetaan koko ja näkyvyys Jframelle
             frame.setSize(4000, 4000);
             frame.setVisible(true);
             

@@ -6,15 +6,15 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
+import javax.swing.*;
 
-public class Pokemonpelikopio {
+public class Pokemonpelikopio extends JPanel  {
     /**
     * @author Alister Gul
     * @author Junnu Danhammer
-    * @date 16.4.2023 
+    * @date 17.4.2023 
     */
-
-
 
     /**
     * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
@@ -27,6 +27,7 @@ public class Pokemonpelikopio {
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
 
+    private static Clip clip;
     /**
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
@@ -56,12 +57,15 @@ public class Pokemonpelikopio {
 
     public static void soitaTunnari(String filePath) {
         try {
-            File file = new File(filePath); // Luodaan uusi tiedosto johon talletaan tunnari 
+            if (clip != null) {
+                clip.stop();  // stop the currently playing audio
+            }
+            File file = new File(filePath);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(audioIn);
-            clip.start();   //Soitetaan tunnari
-            
+            clip.loop(Clip.LOOP_CONTINUOUSLY);  // loop the audio continuously
+            clip.start();  // start playing the audio from the beginning
         } catch (UnsupportedAudioFileException e) { // Virheilmoitus jos tunnarin toisto ei onnistu.
             System.out.println("\033[1;33m" + "Pokemon " + "\033[1;37m" + "tunnarin soittaminen epäonnistui. ");
             e.printStackTrace();
@@ -84,18 +88,22 @@ public class Pokemonpelikopio {
         System.out.println("");
         System.out.println("");
         System.out.println("");
-    	System.out.println("\033[1;33m" 
-        		+ "██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗\r\n"
-        		+ "██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝████╗ ████║██╔═══██╗████╗  ██║\r\n"
-        		+ "██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║\r\n"
-        		+ "██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n"
-        		+ "██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n"
-        		+ "╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n\033[1;31m" 
-                + "╔═════════════════════════════════════════════════════════════╗\r\n"
-                + "║                           \033[1;30mMade by\033[1;31m                           ║\r\n"
-                + "║                         \033[1;30mAlister Gul\033[1;31m                         ║\r\n"
-                + "║                       \033[1;30mJunnu Dannhammer\033[1;31m                      ║\r\n"
-                + "╚═════════════════════════════════════════════════════════════╝");
+        String str = 
+        		"██████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗\r\n" +
+        		"██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝████╗ ████║██╔═══██╗████╗  ██║\r\n" +
+        		"██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║\r\n" +
+        		"██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n" +
+        		"██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n" +
+        		"╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n";
+        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");
+        		System.out.print("\033[1;33m" + str);
+        		
+        System.out.println("\033[1;31m" 
+        		        + "╔═════════════════════════════════════════════════════════════╗\r\n"
+        		        + "║                           \033[1;30mMade by\033[1;31m                           ║\r\n"
+        		        + "║                         \033[1;30mAlister Gul\033[1;31m                         ║\r\n"
+        		        + "║                       \033[1;30mJunnu Dannhammer\033[1;31m                      ║\r\n"
+        		        + "╚═════════════════════════════════════════════════════════════╝");
 
         System.out.println(" ");
         System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
@@ -256,6 +264,21 @@ public class Pokemonpelikopio {
             		+ "   ⬛⬜⬜⬜⬜⬜⬜⬛\r\n"
             		+ "     ⬛⬛⬛⬛⬛⬛");
             System.out.println("");
+            
+            // Luodaan JFrame objekti pelin päätteeksi. Pieni söpö kuva onnitteluiden oheen. :)
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+
+            // Luo ImageIcon ja JLabel objekti
+            ImageIcon imageIcon = new ImageIcon("imageee.jpg");
+            JLabel label = new JLabel(imageIcon);
+
+            // Lisätään label ja layout keskelle näyttöä.
+            frame.add(label, BorderLayout.CENTER);
+
+            // Asetetaan koko ja näkyvyys Jframelle
+            frame.setSize(4000, 4000);
+            frame.setVisible(true);
             
             input.close(); // Suljetaan lukija ja ollaan iloisia :)
         }
