@@ -1,3 +1,4 @@
+// Importoidaan tarvittavat Java-paketit
 import java.io.*;
 import java.util.*;
 import java.io.IOException;
@@ -28,27 +29,29 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
 
     private static Clip clip;   // luo staattisen muuttujan nimeltä "clip", joka mahdollistaa äänen toistamisen
-    /**
-     * 
+    
+    /** 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
      * Myös luodaan pokemonien ja niiden tyyppien listat (new ArrayList) molemmille
      */
 
     public static void main(String[] args) {
     	
-    	Scanner input = new Scanner(System.in);
+    	Scanner input = new Scanner(System.in);		//Luodaan scanner olio nimeltä input
         ArrayList<String> pokemonit = new ArrayList<String>();  // luodaan omat listat pokemonien nimille
         ArrayList<String> tyypit = new ArrayList<String>();     // luodaan omat listat pokemonien tyypeille
         
-        soitaTunnari("Theme.wav");   // kutsutaan metodia
+       // kaikki ohjelmassa olevat metodit alla
+        
+        soitaTunnari("Theme.wav");   
 
-        String tiedostoNimi = luoTiedosto(input);   // kutsutaan metodia
+        String tiedostoNimi = luoTiedosto(input);   
 
-        syotaPokemoninNimiJaTyyppi(input, pokemonit, tyypit, tiedostoNimi);    // kutsutaan metodia
+        syotaPokemoninNimiJaTyyppi(input, pokemonit, tyypit, tiedostoNimi);    
 
-        pelaaMuistipeli(tiedostoNimi, input);    // kutsutaan metodia
+        pelaaMuistipeli(tiedostoNimi, input);    
 
-        pelaaUudestaan(input, tiedostoNimi);    // kutsutaan metodia
+        pelaaUudestaan(input, tiedostoNimi);    
     }  
                          
     /**
@@ -56,10 +59,10 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
      * @param filePath = ohjataan ohjelmalle polku josta löytää soitettava tunnari.
      */
 
-    public static void soitaTunnari(String filePath) {      //
+    public static void soitaTunnari(String filePath) {      
         try {
             if (clip != null) {
-                clip.stop();  // Lopetaan jo soimassa oleva tunnari (Toiminta mikäli käyttäjä haluaa pelata pelin uudestaan --> tunnari alkaa alusta)
+                clip.stop();  // Lopetaan jo soimassa oleva tunnari, jos ei ole "null" (Toiminta mikäli käyttäjä haluaa pelata pelin uudestaan --> tunnari alkaa alusta)
             }
             File file = new File(filePath);     // Luodaan uusi tiedosto-olio
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);   //Haetaan tiedoston syöte virta
@@ -117,11 +120,11 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
 
     		try {
     	        FileWriter tiedosto = new FileWriter(tiedostoNimi + ".txt"); // Luodaan käyttäjän tekemä tiedosto
-                tiedosto.close();
-	        } catch (IOException e) {
+                tiedosto.close();		//sulkee tiedoston luonti prosessin luotuaan tiedoston jatkaakseen metodia
+	        } catch (IOException e) {		// jos yritetään lukea tai kirjoittaa tiedostoon, joka ei ole käytettävissä niin käsittelee sen
 	            System.out.println("\033[1;33m" + "Pokemonien " + "\033[1;37m" + "pyydystys ei onnistunut :("); // Virheilmoitus jos ei onnistu.
-	            input.close();
-	            System.exit(0);
+	            input.close();		// sulkee scanner inputin
+	            System.exit(0);		//poistuu koko ohjelmasta jos tiedoston luonti ei onnistu
 	        }
 	        return tiedostoNimi;    //Palautetaan tiedosto eteenpäin syotaPokemoninNimiJaTyyppi metodin käytettäväksi
 	    }
@@ -135,8 +138,8 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
          */
 
     public static void syotaPokemoninNimiJaTyyppi(Scanner input, ArrayList<String> pokemonit, ArrayList<String> tyypit, String tiedostoNimi) {
-    	boolean jatka = true;
-    	while (jatka) {
+    	boolean jatka = true;		//määrittelee boolean-tyyppisen muuttujan nimeltä "jatka" ja asettaa sen arvoksi "true"
+    	while (jatka) {		//aloittaa while-silmukan, joka suoritetaan niin kauan kuin muuttuja "jatka" on totta
     	    System.out.println("Anna haluamasi" + "\033[1;33m" + " Pokemonin "+ "\033[1;37m" + "nimi: ");
             String nimi = input.nextLine();     // syötetään Scanner inputtiin pokemonien nimet
     	            
@@ -148,23 +151,23 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
             tyypit.add(tyyppi);     // Lisätään listaan pokemonin/pokemonien tyyppi/tyypit
 
     	    try {
-    	        FileWriter tiedosto = new FileWriter(tiedostoNimi + ".txt", true);      // Kirjoitetaan syötteet tiedostoon
-                tiedosto.write(nimi + " " + tyyppi + "\n");
-                tiedosto.close();
-            } catch (IOException e) {
+    	        FileWriter tiedosto = new FileWriter(tiedostoNimi + ".txt", true);   //avataan käyttäjän luoma tiedosto   
+                tiedosto.write(nimi + " " + tyyppi + "\n");		//// Kirjoitetaan käyttäjän syötteet tiedostoon
+                tiedosto.close();		//suljetaan tiedosto siirtyäkseen eteenpäin metodissa
+            } catch (IOException e) {		// jos yritetään lukea tai kirjoittaa tiedostoon, joka ei ole käytettävissä niin käsittelee sen
                 System.out.println("Hupsista," +"\033[1;33m" + "Pokemonit" + "\033[1;37m" + " pääsivät karkuun."); // Virheilmoitus jos ei onnistu.
             }
 
-    	    System.out.println("Haluatko pyydystää vielä" + "\033[1;33m" + " Pokemoneja" + "\033[1;37m" + "? (kyllä/ei) "); // Kysytään halutaanko lisää pokemoneja
-            String vastaus = input.nextLine().toLowerCase();
+    	    System.out.println("Haluatko pyydystää vielä" + "\033[1;33m" + " Pokemoneja" + "\033[1;37m" + "? (kyllä/ei) "); 
+            String vastaus = input.nextLine().toLowerCase();	//käyttäjä syöttää scanner inputtiin haluaako lisätä pokemonea
             System.out.println(" ");
 
-	        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {
+	        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		//jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
     	        System.out.println("Vastaathan kyllä tai ei.");
                 System.out.print("Haluatko lisätä vielä yhden" +"\033[1;33m" + " Pokemonin" + "\033[1;37m" + " ? (kyllä/ei) ");
-				vastaus = input.nextLine().toLowerCase();
+				vastaus = input.nextLine().toLowerCase();	//käyttäjä syöttää uudestaan scanner inputtiin haluaako lisätä pokemonea
 	        }
-            if (vastaus.equals("ei")) { // Halutut pokemonit on syötetty ja ohjelma jatkaa seuraavaan vaiheeseen
+            if (vastaus.equals("ei")) { 	// Jos vastaus on "ei" eli false, niin halutut pokemonit on syötetty ja ohjelma jatkaa seuraavaan vaiheeseen
                 jatka = false;
             }
         }
@@ -180,9 +183,9 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
 
     public static void pelaaMuistipeli(String tiedostoNimi, Scanner input) {
         int pisteet = 0;    // Pisteiden laskuri
-            try {
-                File tiedosto = new File(tiedostoNimi + ".txt");
-                Scanner lukija = new Scanner(tiedosto);
+            try {		
+                File tiedosto = new File(tiedostoNimi + ".txt");	// avaa luodun tiedoston
+                Scanner lukija = new Scanner(tiedosto);		// luo scanner olion nimeltä lukija
 
             while (lukija.hasNextLine()) {          //Lukija käy läpi tiedoston ja erottelee välilyönnistä nimen tyypistä.
                 String rivi = lukija.nextLine(); 
@@ -191,12 +194,12 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
                 String tyyppi = tiedot[1];
 
                System.out.print("Mikä on " + pokemoni + " tyyppi? "); // Muistipeli alkaa!
-                String vastaus = input.nextLine();
+                String vastaus = input.nextLine();		// käyttäjä syöttää scanner inputtiin vastauksen tyyppi kysymykseen
                     
-                if (vastaus.equalsIgnoreCase(tyyppi)) {
+                if (vastaus.equalsIgnoreCase(tyyppi)) {		// Tarkistetaan vastaus pelaajan syöttämän vastauksen ja oikean vastauksen välillä.
                     System.out.println("Hienoa työtä, matkasi näyttää hyvältä" +"\033[1;33m" + " Pokemon" + "\033[1;37m" + " mestariksi !");
                     System.out.println(" ");
-                    pisteet++;
+                    pisteet++;		//Jos vastaus on oikein, lisätään yksi piste pelaajan pisteisiin
                 } else {        // jos ei mene vastaus oikein tulee pieni maininta aiheesta ja oikean vastauksen tulostus.
                     System.out.println("Nyt meni mönkään eli takaisin" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "kouluun."); 
                     System.out.println("Oikea vastaus oli " + tyyppi + ".");
@@ -204,15 +207,15 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
                     System.out.println(" ");
                 }
             }
-			lukija.close();
+			lukija.close();		// scanner lukija olio suljetaan
 
-        } catch (FileNotFoundException e) {     // Virheilmoitus jos ei onnistu.
-            System.out.println("" + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " tiedoston lukeminen epäonnistui.");
+        } catch (FileNotFoundException e) {     // jos yritetään lukea tai kirjoittaa tiedostoon, joka ei ole käytettävissä niin käsittelee sen
+            System.out.println("" + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " tiedoston lukeminen epäonnistui.");		// Virheilmoitus jos ei onnistu.
             System.out.println(" ");
-            return;
+            return;		//lopettaa metodin suorituksen jos tiedoston luku ei onnistunut
         }
 
-        System.out.println("Sinussa on selvästi ainesta " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " mestariksi =)");    // Kehut!
+        System.out.println("Sinussa on selvästi ainesta " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " mestariksi =)");    
         System.out.println("Sait pyydystettyä " + pisteet + " " + "\033[1;33m" + "Pokemonia" + "\033[1;37m" + "");          // Pisteiden tulostus
         System.out.println("");
         
@@ -229,25 +232,26 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
 
     public static void pelaaUudestaan(Scanner input, String tiedostoNimi) {
         System.out.println("Haluatko aloittaa " + "\033[1;33m" + "Pokemonien" + "\033[1;37m" + " metsästyksen uudelleen? (kyllä/ei)");
-        String vastaus = input.nextLine().toLowerCase();
+        String vastaus = input.nextLine().toLowerCase();		// käyttäjältä syöttää scanner inputtiin vastauksen pelin pelaaisesta uudestaan
         System.out.println( "");
 
-        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {
-            System.out.println("Vastaathan kyllä tai ei.");     //Muistutus että vastaahan oikein :) 
+        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		////jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
+            System.out.println("Vastaathan kyllä tai ei.");      
             System.out.println("Haluatko pelata uudelleen? (kyllä/ei)");
-            vastaus = input.nextLine().toLowerCase();
+            vastaus = input.nextLine().toLowerCase();		//käyttäjä syöttää uudestaan scanner inputtiin haluaako pelata uudestaan
         }
-        if (vastaus.equals("kyllä")) {          // Mikäli käyttäjä haluaa pelata uudelleen, alkaa se tästä.
+        if (vastaus.equals("kyllä")) {          // Mikäli käyttäjä haluaa pelata uudelleen, alkaa se tästä ja siirtyy alla oleviin metodeihin.
 			System.out.println("Ladataan uutta " + "\033[1;33m" + "Pokemon " + "\033[1;37m" + "peliä...");
             System.out.println("");
 
+            // metodit jotka suoritetaan jos pelaaja haluaa pelata uudelleen
             soitaTunnari("Theme.wav"); 
             String uusiTiedostoNimi = luoTiedosto(input);
             syotaPokemoninNimiJaTyyppi(input, new ArrayList<String>(), new ArrayList<String>(), uusiTiedostoNimi);
             pelaaMuistipeli(uusiTiedostoNimi, input);
             pelaaUudestaan(input, uusiTiedostoNimi);
 
-        } else {        // LOPPU HEIPAT POKEMONEILTA!
+        } else {        // jos käyttäjä ei halua pelata alkaa se tästä ja LOPPU HEIPAT POKEMONEILTA!
 
             System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Kiitokset pelaamisesta " + "\033[1;33m" + "Pokemonit " + "\033[1;33m" + "\033[1;31m" + "sanoivat" +  "\033[1;33m" +"  ~~~" + "\033[0m");
             System.out.println("");
@@ -282,12 +286,12 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
             frame.setSize(4000, 4000);
             frame.setVisible(true);
             
-            input.close(); // Suljetaan lukija ja ollaan iloisia :)
+            input.close(); // Suljetaan scanner lukija olio ja ollaan iloisia :)
         }
     }
 }
 
-
+//Hävittiin tai voitettiin hyvä peli pelattiin, kiitos.
         
     
     
