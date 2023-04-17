@@ -227,7 +227,7 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
      * Toiminnallisuus luotu suoraan ohjelman sisään.
      * @param input
      * @param tiedostoNimi
-     * Mikäli käyttähä ei tahdo pelata uudelleen tulee loppu kiitokset.
+     * Mikäli käyttäjä ei tahdo pelata uudelleen tulee loppu kiitokset.
      */
 
     public static void pelaaUudestaan(Scanner input, String tiedostoNimi) {
