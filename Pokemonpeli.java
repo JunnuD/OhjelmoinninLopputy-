@@ -6,15 +6,15 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
+import javax.swing.*;
 
-public class Pokemonpeli {
+public class Pokemonpeli extends JPanel  {
     /**
     * @author Alister Gul
     * @author Junnu Danhammer
     * @date 16.4.2023 
     */
-
-
 
     /**
     * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
@@ -263,6 +263,21 @@ public class Pokemonpeli {
             		+ "   ⬛⬜⬜⬜⬜⬜⬜⬛\r\n"
             		+ "     ⬛⬛⬛⬛⬛⬛");
             System.out.println("");
+            
+         // Create a JFrame object
+            JFrame frame = new JFrame();
+            frame.setLayout(new BorderLayout());
+
+            // Create an ImageIcon and JLabel objects
+            ImageIcon imageIcon = new ImageIcon("imageee.jpg");
+            JLabel label = new JLabel(imageIcon);
+
+            // Add the JLabel to the center of the JFrame
+            frame.add(label, BorderLayout.CENTER);
+
+            // Set the size and visibility of the JFrame
+            frame.setSize(4000, 4000);
+            frame.setVisible(true);
             
             input.close(); // Suljetaan lukija ja ollaan iloisia :)
         }
