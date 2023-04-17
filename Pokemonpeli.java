@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import javax.swing.*;
 
-public class Pokemonpeli extends JPanel  {
+public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nimeltä "Pokemonpeli"joka sisältää ohjelman toiminnan kannalta tarvittavat metodit ja muuttujat.
     /**
     * @author Alister Gul
     * @author Junnu Danhammer
@@ -27,7 +27,7 @@ public class Pokemonpeli extends JPanel  {
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
 
-    private static Clip clip;
+    private static Clip clip;   // luo staattisen muuttujan nimeltä "clip", joka mahdollistaa äänen toistamisen
     /**
      * 
      * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
@@ -37,33 +37,34 @@ public class Pokemonpeli extends JPanel  {
     public static void main(String[] args) {
     	
     	Scanner input = new Scanner(System.in);
-        ArrayList<String> pokemonit = new ArrayList<String>();  // luodaan omat listat
-        ArrayList<String> tyypit = new ArrayList<String>();
+        ArrayList<String> pokemonit = new ArrayList<String>();  // luodaan omat listat pokemonien nimille
+        ArrayList<String> tyypit = new ArrayList<String>();     // luodaan omat listat pokemonien tyypeille
         
-        soitaTunnari("Theme.wav"); // kutsutaan metodit
+        soitaTunnari("Theme.wav");   // kutsutaan metodia
 
-        String tiedostoNimi = luoTiedosto(input);
+        String tiedostoNimi = luoTiedosto(input);   // kutsutaan metodia
 
-        syotaPokemoninNimiJaTyyppi(input, pokemonit, tyypit, tiedostoNimi);
+        syotaPokemoninNimiJaTyyppi(input, pokemonit, tyypit, tiedostoNimi);    // kutsutaan metodia
 
-        pelaaMuistipeli(tiedostoNimi, input);
+        pelaaMuistipeli(tiedostoNimi, input);    // kutsutaan metodia
 
-        pelaaUudestaan(input, tiedostoNimi);
+        pelaaUudestaan(input, tiedostoNimi);    // kutsutaan metodia
     }  
                          
     /**
+     * // Metodi soitaTunnari, joka soittaa Pokemon-pelin teemakappaleen.
      * @param filePath = ohjataan ohjelmalle polku josta löytää soitettava tunnari.
      */
 
-    public static void soitaTunnari(String filePath) {
+    public static void soitaTunnari(String filePath) {      //
         try {
             if (clip != null) {
                 clip.stop();  // Lopetaan jo soimassa oleva tunnari (Toiminta mikäli käyttäjä haluaa pelata pelin uudestaan --> tunnari alkaa alusta)
             }
-            File file = new File(filePath);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-            clip = AudioSystem.getClip();
-            clip.open(audioIn);
+            File file = new File(filePath);     // Luodaan uusi tiedosto-olio
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);   //Haetaan tiedoston syöte virta
+            clip = AudioSystem.getClip();   // Luodaan uusi Clip-olio, johon tallennetaan äänitiedoston toistoon liittyvät tiedot
+            clip.open(audioIn);     // tunnari alkaa soimaan
             clip.loop(Clip.LOOP_CONTINUOUSLY);  // Loputon audio loop
             clip.start();  // Aloitetaan soittamaan alusta 
         } catch (UnsupportedAudioFileException e) { // Virheilmoitus jos tunnarin toisto ei onnistu.
@@ -95,7 +96,7 @@ public class Pokemonpeli extends JPanel  {
         		"██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n" +
         		"██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n" +
         		"╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n";
-        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");
+        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");     // // korvaa merkin █ ensin keltaisella, sitten sinisellä, jotta saadaan haluttu vaikutelma
         		System.out.print("\033[1;33m" + str);
         		
         System.out.println("\033[1;31m" 
@@ -111,7 +112,7 @@ public class Pokemonpeli extends JPanel  {
         System.out.println("Nyt on aika tehdä sinusta" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "mestari ! ");
     	       
         System.out.println("Anna " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " tiedostollesi nimi: ");
-        String tiedostoNimi = input.nextLine();
+        String tiedostoNimi = input.nextLine();     // syötetään Scanner inputtiin tiedoston nimi
         System.out.println(" ");
 
     		try {
@@ -122,10 +123,11 @@ public class Pokemonpeli extends JPanel  {
 	            input.close();
 	            System.exit(0);
 	        }
-	        return tiedostoNimi;
+	        return tiedostoNimi;    //Palautetaan tiedosto eteenpäin syotaPokemoninNimiJaTyyppi metodin käytettäväksi
 	    }
 
         /**
+         * Tässä syötetään käyttäjän luomaan tiedostoon pelin pelaamiseen tarvittavat asiat
          * @param input samaa lukijaa hyödynnetään jälleen, jolla saadaan käyttäjän luomaan tiedostoon sisältö
          * @param pokemonit = käyttäjän itse syöttämät pokemonit, jotka saa valita vapaasti
          * @param tyypit = pokemonien tietyt tyypit (esim. vesi, tuli sähkö jne)
@@ -136,14 +138,14 @@ public class Pokemonpeli extends JPanel  {
     	boolean jatka = true;
     	while (jatka) {
     	    System.out.println("Anna haluamasi" + "\033[1;33m" + " Pokemonin "+ "\033[1;37m" + "nimi: ");
-            String nimi = input.nextLine();
+            String nimi = input.nextLine();     // syötetään Scanner inputtiin pokemonien nimet
     	            
-            pokemonit.add(nimi);    // Lisätään pokemonin/pokemonien nimet ja tyyppi/tyypit
+            pokemonit.add(nimi);    // Lisätään listaan pokemonin/pokemonien tyyppi/tyypit
 
     	    System.out.println("Kerro vielä äskeisen antamasi" +"\033[1;33m" + " Pokemonin" + "\033[1;37m" + " tyyppi: ");
-            String tyyppi = input.nextLine();
+            String tyyppi = input.nextLine();   // syötetään Scanner inputtiin pokemonin tyyppi
             System.out.println(" ");
-            tyypit.add(tyyppi);
+            tyypit.add(tyyppi);     // Lisätään listaan pokemonin/pokemonien tyyppi/tyypit
 
     	    try {
     	        FileWriter tiedosto = new FileWriter(tiedostoNimi + ".txt", true);      // Kirjoitetaan syötteet tiedostoon
