@@ -115,7 +115,9 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
         System.out.println(" ");
         System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
         System.out.println(" ");
+        System.out.println("Pelin sisäinen " + "\033[1;31m" + "PokeDex " + "\033[1;37m" + "opastaa sinua pelin joka vaiheessa. ");
         System.out.println("Nyt on aika tehdä sinusta" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "mestari ! ");
+        System.out.println("");
     	       
         System.out.println("Anna " + "\033[1;33m" + "Pokemon" + "\033[1;37m" + " tiedostollesi nimi: ");
         String tiedostoNimi = input.nextLine();     // syötetään Scanner inputtiin tiedoston nimi
@@ -166,7 +168,8 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
             String vastaus = input.nextLine().toLowerCase();	//käyttäjä syöttää scanner inputtiin haluaako lisätä pokemonea
             System.out.println(" ");
 
-	        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		//jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
+	        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		
+                //jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
     	        System.out.println("Vastaathan kyllä tai ei.");
                 System.out.print("Haluatko lisätä vielä yhden" +"\033[1;33m" + " Pokemonin" + "\033[1;37m" + " ? (kyllä/ei) ");
 				vastaus = input.nextLine().toLowerCase();	//käyttäjä syöttää uudestaan scanner inputtiin haluaako lisätä pokemonea
@@ -242,7 +245,7 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
         String vastaus = input.nextLine().toLowerCase();		// käyttäjältä syöttää scanner inputtiin vastauksen pelin pelaaisesta uudestaan
         System.out.println( "");
 
-        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		//jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
+        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {	//jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
             System.out.println("Vastaathan kyllä tai ei.");      
             System.out.println("Haluatko pelata uudelleen? (kyllä/ei)");
             vastaus = input.nextLine().toLowerCase();		//käyttäjä syöttää uudestaan scanner inputtiin haluaako pelata uudestaan
