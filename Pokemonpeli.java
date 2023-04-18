@@ -10,7 +10,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import javax.swing.*;
 
-public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nimeltä "Pokemonpeli"joka sisältää ohjelman toiminnan kannalta tarvittavat metodit ja muuttujat.
+public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nimeltä 'Pokemonpeli' joka sisältää ohjelman toiminnan kannalta tarvittavat metodit ja muuttujat.
     /**
     * @author Alister Gul
     * @author Junnu Danhammer

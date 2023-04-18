@@ -10,7 +10,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.awt.*;
 import javax.swing.*;
 
-public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä nimeltä "Pokemonpeli" joka sisältää ohjelman toiminnan kannalta tarvittavat metodit ja muuttujat.
+public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä nimeltä 'Pokemonpeli' joka sisältää ohjelman toiminnan kannalta tarvittavat metodit ja muuttujat.
     /**
     * @author Alister Gul
     * @author Junnu Danhammer
@@ -18,26 +18,27 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
     */
 
     /**
-    * Otetaan erilaisia värejä käyttöön ohjelmaa varten!
+    * Otetaan erilaisia värejä käyttöön ohjelman tulostuksia varten!
     */
 
     public static final String RED_BOLD = "\033[1;31m";     // RED
     public static final String GREEN_BOLD = "\033[1;32m";   // GREEN
-    public static final String BLUE_BOLD = "\033[1;34m";    // BLUE   JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
+    public static final String BLUE_BOLD = "\033[1;34m";    // BLUE
     public static final String CYAN_BOLD = "\033[1;36m";    // CYAN
     public static final String WHITE_BOLD = "\033[1;37m";   // WHITE
     public static final String YELLOW_BOLD = "\033[1;33m";  // YELLOW
+    // JOS HALUAA BOLD POIS MUOKKAA VAIN [0,34m] MUOTOON TUON ESIM
 
-    private static Clip clip;   // luo staattisen muuttujan nimeltä "clip", joka mahdollistaa äänen toistamisen
+    private static Clip clip;   // luo staattisen muuttujan nimeltä 'clip', joka mahdollistaa äänen toistamisen
     
     /** 
-     * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy kokonaisena
+     * Main osiossa laitetaan metodit oikeaan järjestykseen, jotta ohjelma runko pysyy oikeana
      * Myös luodaan pokemonien ja niiden tyyppien listat (new ArrayList) molemmille
      */
 
     public static void main(String[] args) {
     	
-    	Scanner input = new Scanner(System.in);		//Luodaan scanner olio nimeltä input
+    	Scanner input = new Scanner(System.in);		            //Luodaan scanner olio nimeltä input
         ArrayList<String> pokemonit = new ArrayList<String>();  // luodaan omat listat pokemonien nimille
         ArrayList<String> tyypit = new ArrayList<String>();     // luodaan omat listat pokemonien tyypeille
         
@@ -85,6 +86,8 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
      * @param input saadaan lukija käyttöön, jonka avulla luodaan ensin uusi tiedosto .txt muodossa
      * @return palauttaa käyttäjän luoman tiedostonimen takaisin ohjelmaan.
      * @exception IOexception käytössä tiedostonkäsittelyä varten
+     * @FileWriter käytetään tiedoston luomiseen
+     * @String tiedostonimi = käyttäjän itse luoma ja nimeämä tiedosto
      */
 
     public static String luoTiedosto(Scanner input) {
@@ -99,14 +102,14 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
         		"██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██║╚██╔╝██║██║   ██║██║╚██╗██║\r\n" +
         		"██║     ╚██████╔╝██║  ██╗███████╗██║ ╚═╝ ██║╚██████╔╝██║ ╚████║\r\n" +
         		"╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝\r\n";
-        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");     // // korvaa merkin █ ensin keltaisella, sitten sinisellä, jotta saadaan haluttu vaikutelma
+        		str = str.replaceAll("█", "\033[1;33m█\033[1;34m");     // korvaa merkin █ ensin keltaisella, sitten sinisellä, jotta saadaan haluttu vaikutelma
         		System.out.print("\033[1;33m" + str);
         		
         System.out.println("\033[1;31m" 
         		        + "╔═════════════════════════════════════════════════════════════╗\r\n"
-        		        + "║                           \033[1;30mMade by\033[1;31m                           ║\r\n"
-        		        + "║                         \033[1;30mAlister Gul\033[1;31m                         ║\r\n"
-        		        + "║                       \033[1;30mJunnu Dannhammer\033[1;31m                      ║\r\n"
+        		        + "║                           \033[1;33mMade by\033[1;31m                           ║\r\n"
+        		        + "║                         \033[1;33mAlister Gul\033[1;31m                         ║\r\n"
+        		        + "║                       \033[1;33mJunnu Dannhammer\033[1;31m                      ║\r\n"
         		        + "╚═════════════════════════════════════════════════════════════╝");
 
         System.out.println(" ");
@@ -131,6 +134,7 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
 
         /**
          * Tässä syötetään käyttäjän luomaan tiedostoon pelin pelaamiseen tarvittavat asiat
+         * @boolean saa arvoksi 'true' ja jatkaa looppia niin pitkään kuin arvo on tosi
          * @param input samaa lukijaa hyödynnetään jälleen, jolla saadaan käyttäjän luomaan tiedostoon sisältö
          * @param pokemonit = käyttäjän itse syöttämät pokemonit, jotka saa valita vapaasti
          * @param tyypit = pokemonien tietyt tyypit (esim. vesi, tuli sähkö jne)
@@ -179,6 +183,7 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
      * Tässä myös on pisteydenlasku ja tulostus siitä kun metodi on läpikäyty.
      * @param tiedostoNimi = käyttäjän luoma tiedosto
      * @param input = syötteen lukija
+     * @param pisteet = pelaajan pistelaskuri muuttuja
      */
 
     public static void pelaaMuistipeli(String tiedostoNimi, Scanner input) {
@@ -227,6 +232,8 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
      * Toiminnallisuus luotu suoraan ohjelman sisään.
      * @param input
      * @param tiedostoNimi
+     * @param vastaus käyttäjän syöte vastauksena kysymykseen
+     * @param frame tulevaa kuvaa varten. Ohjelma tulostaa päätyttyään vielä suloisen valokuvan pelaajan näytölle. :)
      * Mikäli käyttäjä ei tahdo pelata uudelleen tulee loppu kiitokset.
      */
 
@@ -235,7 +242,7 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
         String vastaus = input.nextLine().toLowerCase();		// käyttäjältä syöttää scanner inputtiin vastauksen pelin pelaaisesta uudestaan
         System.out.println( "");
 
-        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		////jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
+        while (!vastaus.equals("kyllä") && !vastaus.equals("ei")) {		//jos käyttäjän syöttämä vastaus ei ole "kyllä" tai "ei" niin ohjelma tulosaa alla olevat ja kysyy uudestaan
             System.out.println("Vastaathan kyllä tai ei.");      
             System.out.println("Haluatko pelata uudelleen? (kyllä/ei)");
             vastaus = input.nextLine().toLowerCase();		//käyttäjä syöttää uudestaan scanner inputtiin haluaako pelata uudestaan
