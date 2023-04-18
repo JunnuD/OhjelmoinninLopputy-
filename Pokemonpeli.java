@@ -285,7 +285,7 @@ public class Pokemonpeli  {     // Koko koodi alkaa luokan määrittelyllä nime
             frame.add(label, BorderLayout.CENTER);
 
             // Asetetaan koko ja näkyvyys sekä päällimmäiseksi ikkunaksi Jframe
-            frame.setSize(1000, 2000);
+            frame.setSize(5000, 2000);
             frame.setVisible(true);
             frame.setAlwaysOnTop(true);
             
