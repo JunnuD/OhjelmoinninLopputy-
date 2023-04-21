@@ -113,7 +113,7 @@ public class Pokemonpelikopio  {     // Koko koodi alkaa luokan määrittelyllä
         		        + "╚═════════════════════════════════════════════════════════════╝");
 
         System.out.println(" ");
-        System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
+        System.out.println("\033[1;33m" + " ~~~  " + "\033[1;31m" + "Tervetuloa pelaamaan" + "\033[1;33m" + " Pokemon Catch Em' All " + "\033[1;31m" + "peliä" + "\033[1;33m" + "  ~~~   " + "\033[1;37m");
         System.out.println(" ");
         System.out.println("Pelin sisäinen " + "\033[1;31m" + "PokeDex " + "\033[1;37m" + "opastaa sinua pelin joka vaiheessa. ");
         System.out.println("Nyt on aika tehdä sinusta" + "\033[1;33m" + " Pokemon " + "\033[1;37m" + "mestari ! ");
